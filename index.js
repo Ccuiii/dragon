@@ -1,3 +1,4 @@
-import { request, ResponseError } from "./src/request";
+import request, { ResponseError } from "./src/request";
 
-export { request, ResponseError };
+export default request
+export { ResponseError }
