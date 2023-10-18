@@ -1,5 +1,5 @@
 {
-  "name": "dragon",
+  "name": "cuiii-dragon",
   "version": "1.0.0",
   "description": "common tools",
   "keywords": ["utils", "react", "request"],
@@ -11,6 +11,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ccuiii",
-  "license": "ISC"
+  "author": "cuiriyi",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^5.6.1"
+  }
 }
