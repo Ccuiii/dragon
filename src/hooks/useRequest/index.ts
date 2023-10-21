@@ -22,7 +22,7 @@ class Fetch<T> {
     setData: this.setData.bind(this),
     error: undefined,
     params: {},
-    run: this.start.bind(this),
+    run: this.run.bind(this),
     cancel: this.cancel.bind(this),
   };
 
@@ -54,7 +54,7 @@ class Fetch<T> {
     });
   }
 
-  async start(...args: any[]) {
+  async run(...args: any[]) {
     // 请求开始
     this.setState({
       loading: true,
@@ -91,7 +91,7 @@ class Fetch<T> {
       }, this.config.pollingInterval);
     }
 
-    // 如果要在start 后面用.then获取，那就在enhance一下
+    // 如果要在run 后面用.then获取，那就在enhance一下
     return result;
   }
 
@@ -142,7 +142,7 @@ class Fetch<T> {
   // 刷新
   refresh() {
     const { params } = this.state;
-    this.start(...params);
+    this.run(...params);
   }
 }
 
@@ -182,7 +182,7 @@ function useRequest<T = any>(
   // ---------------持久化不会变的函数------------
 
   // 真正请求接口的函数
-  const start = usePersistFn((...args) => {
+  const run = usePersistFn((...args) => {
     if (!fetchStateRef.current) {
       const fetch = new Fetch(
         requestPersisted,
@@ -198,13 +198,13 @@ function useRequest<T = any>(
       setFetchState(fetch.state);
     }
 
-    return fetchStateRef.current.start(...args);
+    return fetchStateRef.current.run(...args);
   });
 
   // 初始化清后请求一次
   useEffect(() => {
     if (!manual) {
-      start();
+      run();
     }
     // 卸载时废弃请求
     return () => {
@@ -216,7 +216,7 @@ function useRequest<T = any>(
   return {
     loading: !manual,
     ...fetchState,
-    run: start,
+    run,
   } as FetchResult<T>;
 }
 
