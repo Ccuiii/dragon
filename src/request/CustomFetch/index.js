@@ -115,11 +115,11 @@ export default class CustomFetch {
   errorHandler() {
     return (e) => {
       // 不用弹提示
-      if (!this.options.throw) return Promise.reject(e)
+      if (!this.options.throw) return e
       if ('stack' in e && 'message' in e) {
         toastError(`${e.message || '未知错误'}`)
       }
-      return Promise.reject(e)
+      return e
     }
   }
 
