@@ -13,7 +13,7 @@ export type FetchResult<T> = {
   setData: (data: any) => void;
   error: Error | undefined;
   params: any;
-  start: (...args: any[]) => Promise<T | Error>;
+  run: (...args: any[]) => Promise<T | Error>;
   cancel: (...args: any[]) => void;
 };
 

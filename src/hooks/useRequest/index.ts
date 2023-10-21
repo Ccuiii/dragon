@@ -22,7 +22,7 @@ class Fetch<T> {
     setData: this.setData.bind(this),
     error: undefined,
     params: {},
-    start: this.start.bind(this),
+    run: this.start.bind(this),
     cancel: this.cancel.bind(this),
   };
 
@@ -216,7 +216,7 @@ function useRequest<T = any>(
   return {
     loading: !manual,
     ...fetchState,
-    start,
+    run: start,
   } as FetchResult<T>;
 }
 
